@@ -7,4 +7,8 @@ class PagesController < ApplicationController
     @title = "About";
   end
 
+  def lastFM
+  	@title = "LastFM"
+  end
+
 end

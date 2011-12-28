@@ -1,6 +1,7 @@
 LastFM::Application.routes.draw do
   root :to => 'pages#home'
   match '/about', :to => "pages#about"
+  match '/lastFM', :to => 'pages#lastFM'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

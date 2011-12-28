@@ -5,9 +5,8 @@ var map;
 $(function(){
 	if($("#about").length != 0){
 		alert("The About Page");
+		$("#about_map_button").click(loadScript);
 	}
-  
-  	$("#about_map_button").click(loadScript);
 
 });
 
