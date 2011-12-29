@@ -19,7 +19,7 @@ function loadScript(callback) {
 
 function loadMaps() {
 	if(navigator.geolocation){
-		navigator.geolocation.getCurrentPosition(displayLocation, displayError)
+		navigator.geolocation.getCurrentPosition(displayLocation, displayError);
 	}
 	else{
 		alert("No Geolocation support");

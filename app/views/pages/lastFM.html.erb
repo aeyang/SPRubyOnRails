@@ -1,16 +1,19 @@
 <h1 id="lastFM"> The Last.FM API! </h1>
 
-<div>
    <form id="lastFM_upcoming_form">
-     Find upcoming events/concerts for the artist/band named: <input type="text" />
+     <label for="lastFM_input"> Find upcoming Events for: </label> <input type="text" id="lastFM_input"/>
      <button type="button" id="lastFM_upcoming_submit">Lets Go!</button>
    </form>
 
-   <p> Events List: </p>
+<div id="lastFM_left_div">
+   <p> Upcoming Events List: </p>
    <ul id="lastFM_events_list">
    </ul>
-
-   <div id="lastFM_map_div" style="width: 500px; height: 400px;">
-   </div>
-
 </div>
+
+<div id="lastFM_right_div">
+   <div id="lastFM_map_div">
+      <p>Select an Event to see the map!</p>
+   </div>
+</div>
+

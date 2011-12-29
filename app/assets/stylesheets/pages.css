@@ -1,0 +1,37 @@
+/*PagesController global styles*/
+html, body{
+  margin:2px;
+  padding:2px;
+  height:100%;
+}
+
+/* lastFM page styles */
+#lastFM_upcoming_submit{
+	margin: 10px;
+}
+
+#lastFM_left_div{
+  margin:0;
+  padding:0;
+  width: 49%;
+  height: 100%;
+  border: 1px solid;
+  float:left;
+}
+
+#lastFM_right_div{
+  margin:0;
+  padding:0;
+  width: 49%;
+  height: 100%;
+  float:right;
+}
+
+#lastFM_map_div {
+	border: 2px solid;
+	border-radius: 25px;
+ 	width: 500px; 
+	height: 400px; 
+	float: right;
+	box-shadow: 10px 10px 5px #888888;
+}
