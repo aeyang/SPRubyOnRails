@@ -1,4 +1,5 @@
 var globalData;
+var eventOfInterest;
 
 $(function () {
 	if($("#lastFM").length != 0){
@@ -50,16 +51,23 @@ function submitHandler(callback){
 		  		//event object stored in the array.
 		  		if($.isArray(data.events.event)){
 				  	for(var i = 0; i < data.events.event.length; i++){
-				  		items.push('<li class="clickable">' + data.events.event[i].title + '</li>');
+				  		//Grab picture and title of the event and push it into an array
+				  		items.push('<li class="clickable">' + '<img src='  + data.events.event[i].image[2]["#text"] + ' alt="eventPic"/>' 
+				  		+ data.events.event[i].title + '</li>');
 				  	}
 				}
 				//else, we only have one event, and its an event object.
 				else{
-					items.push('<li class="clickable">' + data.events.event.title + '</li>');
+					//Grab picture and title of the event and push it into an array
+					items.push('<li class="clickable">' + '<img src='  + data.events.event.image[2]["#text"] + ' alt="eventPic"/>'
+					+ data.events.event.title + '</li>');
 				}
+
+				//Add all elements in list to the Events list
 				list.append(items.join(' '));
 			}
 
+			//Set all <li> to be clickable and specify a click handler for all events
 			$('li.clickable').css('cursor', 'pointer').click(eventClick);
 		  });
 	}
@@ -72,8 +80,9 @@ function eventClick(){
 			var temp = globalData.events.event[k];
 
 			if(temp.title === $(this).text()){
-			   $(this).append('<ul> <li>  Starts: '  + temp.startDate +  '<br/>  Ends: ' + temp.endDate + '</li> </ul>');
-
+			   $(this).append('<ul> <li>  Starts: '  + temp.startDate +  '<br/>  Ends: ' + temp.endDate +  '</li> </ul>');
+			   eventOfInterest = temp;
+			   dynamicLoad();
 			}
 		}
 	}
@@ -81,6 +90,32 @@ function eventClick(){
 		if(globalData.events.event.title === $(this).text()){
 			$(this).append('<ul> <li>  Starts: '  + globalData.events.event.startDate +  '<br/>  Ends: ' + 
 			  globalData.events.event.endDate + '</li> </ul>');
+			eventOfInterest = globalData.events.event; 
+			dynamicLoad(); 
 		}
 	}
+}
+
+function dynamicLoad(){
+
+	if($("#lastFM_googleMaps_script").length == 0){
+		console.log("about to insert");
+		$('<script>', {
+			src: 'http://maps.google.com/maps/api/js?sensor=false&callback=showMap',
+			id: 'lastFM_googleMaps_script'
+		}).appendTo('<body>');
+	}
+}
+
+function showMap(){
+
+	var googleLatAndLong = new google.maps.LatLng(eventOfInterest.venue.location["geo:point"]["geo:lat"],eventOfInterest.venue.location["geo:point"]["geo:long"]);
+
+	var mapOptions = {
+		zoom: 15,
+		center: googleLatAndLong,
+		mapTypeId: google.maps.MapTypeId.ROADMAP//This is type of map. Also try Hybrid and Satellite
+	};
+
+	map = new google.maps.Map($("#lastFM_map_div")[0], mapOptions);
 }
