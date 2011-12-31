@@ -32,6 +32,17 @@ html, body{
 	border-radius: 25px;
  	width: 500px; 
 	height: 400px; 
-	float: center;
+	float: none;
 	box-shadow: 10px 10px 5px #888888;
+  margin: 20px;
+}
+
+#lastFM_earth_div {
+  border: 2px solid;
+  border-radius: 25px;
+  width: 500px;
+  height: 400px;
+  float: none;
+  box-shadow: 10px 10px 5px #888888;
+  margin: 20px;
 }

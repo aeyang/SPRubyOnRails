@@ -101,7 +101,8 @@ function dynamicLoad(){
 	if($("#lastFM_googleMaps_script").length == 0){
 		console.log("about to insert");
 		$('<script>', {
-			src: 'http://maps.google.com/maps/api/js?sensor=false&callback=showMap',
+			src: 'http://maps.google.com/maps/api/js?' +
+			  'key=AIzaSyClnt9-I5FJqcRJK35GxFMsY-vRTc7N8N8' + '&sensor=false&callback=showMap',
 			id: 'lastFM_googleMaps_script'
 		}).appendTo('<body>');
 	}
@@ -118,4 +119,8 @@ function showMap(){
 	};
 
 	map = new google.maps.Map($("#lastFM_map_div")[0], mapOptions);
+
+
+	//This won't work on linux
+	google.load("earth", "1", {callback: function(){alert("in");}});
 }
