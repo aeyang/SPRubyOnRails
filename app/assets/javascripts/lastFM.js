@@ -115,7 +115,7 @@ function showMap(){
 	var mapOptions = {
 		zoom: 15,
 		center: googleLatAndLong,
-		mapTypeId: google.maps.MapTypeId.ROADMAP//This is type of map. Also try Hybrid and Satellite
+		mapTypeId: google.maps.MapTypeId.ROADMAP//This is a type of map. Also try Hybrid and Satellite
 	};
 
 	map = new google.maps.Map($("#lastFM_map_div")[0], mapOptions);
