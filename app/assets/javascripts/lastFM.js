@@ -102,13 +102,13 @@ function dynamicLoad(){
 		console.log("about to insert");
 		$('<script>', {
 			src: 'http://maps.google.com/maps/api/js?' +
-			  'key=AIzaSyClnt9-I5FJqcRJK35GxFMsY-vRTc7N8N8' + '&sensor=false&callback=showMap',
+			  'key=AIzaSyClnt9-I5FJqcRJK35GxFMsY-vRTc7N8N8' + '&sensor=false&callback=showConcertMap',
 			id: 'lastFM_googleMaps_script'
 		}).appendTo('<body>');
 	}
 }
 
-function showMap(){
+function showConcertMap(){
 
 	var googleLatAndLong = new google.maps.LatLng(eventOfInterest.venue.location["geo:point"]["geo:lat"],eventOfInterest.venue.location["geo:point"]["geo:long"]);
 
@@ -121,6 +121,6 @@ function showMap(){
 	map = new google.maps.Map($("#lastFM_map_div")[0], mapOptions);
 
 
-	//This won't work on linux
-	google.load("earth", "1", {callback: function(){alert("in");}});
+	//This won't work on linux. google earth no plugin for linux
+	//google.load("earth", "1", {callback: function(){alert("in");}});
 }
