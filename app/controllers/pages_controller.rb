@@ -11,4 +11,8 @@ class PagesController < ApplicationController
   	@title = "LastFM"
   end
 
+  def Amazon
+  	@title = "Amazon"
+  end
+
 end
