@@ -22,6 +22,7 @@ group :development, :test do
 end
 
 gem 'jquery-rails'
+gem 'amazon_product'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
