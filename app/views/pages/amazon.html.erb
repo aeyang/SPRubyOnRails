@@ -1,14 +1,36 @@
 <h1 id="amazon"> The Amazon API [server-side gem]</h1>
 
-<% @resp.each('Item') do |item| %>
-	<%#*http://www.amazon.com/dp/<%=item['ASIN']%>
+<% @resp.each('Item') do | item |%>
+<%#*http://www.amazon.com/dp/<%= item['ASIN'] %>
 
-	<% g = item['MediumImage'].nil? %>
-	<% if g == false %>
-	  <% item['MediumImage'].each do |img| %>
-	   	<% if img[0] == "URL" %>
-		  <%=image_tag(img[1],:alt=>’Amazon’,:title=>’Product’)%> <br/>
-	    <%end%>
-	  <%end%>
-	<%end%>
+<%g =item['MediumImage'].nil? %>
+
+<% if g==false %>
+<%item['MediumImage'].each  do | img|%>
+<% if img[0]=="URL" %>
+<%=image_tag(img[1],:alt=>'Amazon',:title=>'Product')%> <br/>
 <%end%>
+
+<%end%>
+
+<%end%>
+<%item['ItemAttributes'].each  do | attri|%>
+
+<% if attri[0]=="Title" %>
+Title:-<%=attri[1]%> <br/>
+<%end%>
+
+<% if attri[0]=="ListPrice" %>
+<%attri[1].each  do | pric|%>
+<% if pric[0]=="FormattedPrice" %>
+Prize:-<%=pric[1]%> <br/>
+<%end%>
+<% if pric[0]=="Amount" %>
+<%#*Amount:-<%=pric[1]%> <br/>
+<%end%>
+<%end%>
+<%end%>
+<% end %>
+<br/>
+<br/>———————————————————— <br/><br/>
+<%end %>

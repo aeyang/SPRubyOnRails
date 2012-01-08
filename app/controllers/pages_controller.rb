@@ -11,18 +11,19 @@ class PagesController < ApplicationController
   	@title = "LastFM"
   end
 
-  def Amazon
+  def amazon
     @title = "Amazon"
+
   	#Amazon_product gem setup
   	req = AmazonProduct['us']
   	req.configure do |c|
-  	  c.key = 'AKIAJKWWS7XBCREYXFBA'
-  	  c.secret = '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'
+  	  c.key = 'AKIAITDQ43M6CV7CVTMA'
+  	  c.secret = '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'
   	  c.tag = 'musiexplsenip-20'
     end
-  	
+
   	req << {
-  		operation => 'ItemSearch',
+  		:operation => 'ItemSearch',
   		:search_index => 'All',
   		:Keywords => 'Book',
   		:response_group => ['ItemAttributes', 'Images'],
