@@ -24,10 +24,10 @@ class PagesController < ApplicationController
 
   	req << {
   		:operation => 'ItemSearch',
-  		:search_index => 'All',
-  		:Keywords => 'Book',
+  		:search_index => 'Music',
+  		:Keywords => 'album',
   		:response_group => ['ItemAttributes', 'Images'],
-  		:Version => '2011-08-01'
+  		:Artist => 'Linkin Park'
   	}
 
   	@resp = req.get
