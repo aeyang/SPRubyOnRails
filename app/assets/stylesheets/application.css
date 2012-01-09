@@ -5,3 +5,36 @@
  *= require_self
  *= require_tree . 
 */
+
+/* APPLICATION-WIDE SETTINGS */
+
+/* Declaring fonts */
+@font-face
+{
+	font-family: scriptStyle;
+	src: url('SCRIPTIN.ttf');
+}
+
+/* Awesome way to make perfect full-screen backgrounds that dont suck 
+   Also here is CSS3 multiple background-images
+*/
+html 
+{
+    background: url(ror.png) fixed, url(retro.jpg) fixed;
+    background-repeat: no-repeat, no-repeat; 
+    background-position: right bottom, center center;
+    background-size: auto, cover;
+
+    /* dont really know what this is for...
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    */
+}
+
+/* Top-level headers should look fancy */
+h1
+{
+	font-family: scriptStyle;
+	font-size: 60px;
+}
