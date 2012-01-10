@@ -46,3 +46,13 @@ html, body{
   box-shadow: 10px 10px 5px #888888;
   margin: 20px;
 }
+
+/* Amazon page styles */
+#amazon_widget_div {
+  border: 2px solid;
+  width: 500px; 
+  height: 800px; 
+  float:right;
+  box-shadow: 10px 10px 5px #888888;
+  margin: 20px;
+}

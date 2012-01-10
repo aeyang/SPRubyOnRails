@@ -13,6 +13,7 @@ class PagesController < ApplicationController
 
   def amazon
     @title = "Amazon"
+    @search = params[:amazon_search_form]
 
   	#Amazon_product gem setup
   	req = AmazonProduct['us']
@@ -27,11 +28,11 @@ class PagesController < ApplicationController
   		:search_index => 'Music',
   		:Keywords => 'album',
   		:response_group => ['ItemAttributes', 'Images'],
-  		:Artist => 'Linkin Park'
+  		:Artist => @search
   	}
 
   	@resp = req.get
-  	#@resp = req.search('George Orwell')
+  	
   end
 
 end

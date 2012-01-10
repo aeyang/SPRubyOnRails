@@ -1,35 +1,71 @@
 <h1 id="amazon"> The Amazon API [server-side gem]</h1>
 
-<% @resp.each('Item') do | item |%>
-  <%#*http://www.amazon.com/dp/<%= item['ASIN'] %>
+<!-- Rails Search Form -->
+<%= form_tag(amazon_path, :method => 'get') do %>
+  <h3> Search <img src='../../assets/images/amazonlogo.jpg' alt='Amazon.com' id='amazon_amazon_img' /> for Albums </h3>
+  <%= label_tag(:amazon_search_form, "by Band/Artist:") %>
+  <%= text_field_tag(:amazon_search_form) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<br/><br/>
 
-  <%g = item['MediumImage'].nil? %>
+<!-- Amazon Search Widget. Non-Dynamic -->
+<div id="amazon_widget_div">
+	<script type='text/javascript'>
+		var amzn_wdgt={widget:'Search'};
+		amzn_wdgt.tag='musiexplsenip-20';
+		amzn_wdgt.columns='3';
+		amzn_wdgt.rows='50';
+		amzn_wdgt.defaultSearchTerm='Music';
+		amzn_wdgt.searchIndex='Music';
+		amzn_wdgt.width='500';
+		amzn_wdgt.showImage='True';
+		amzn_wdgt.showPrice='True';
+		amzn_wdgt.showRating='True';
+		amzn_wdgt.design='4';
+		amzn_wdgt.colorTheme='Default';
+		amzn_wdgt.headerTextColor='#FFFFFF';
+		amzn_wdgt.outerBackgroundColor='#000000';
+		amzn_wdgt.marketPlace='US';
+	</script>
+    <script type='text/javascript' src='http://wms.assoc-amazon.com/20070822/US/js/AmazonWidgets.js'> </script>
+</div>
 
-  <% if g == false %>
-    <% item['MediumImage'].each  do |img| %>
-      <% if img[0]=="URL" %>
-        <%=image_tag(img[1],:alt=>'Amazon',:title=>'Product')%> <br/>
-      <%end%>
-    <%end%>
-  <%end%>
+<!-- Amazon Search Results -->
+<% if !@resp.nil? && !@search.empty? %>
 
-  <%item['ItemAttributes'].each  do |attri|%>
-    <% if attri[0]=="Title" %>
-      Title: <%=attri[1]%> <br/>
-    <%end%>
+	<% @resp.each('Item') do | item | %>
+	  <%#*http://www.amazon.com/dp/<%= item['ASIN'] %>
 
-    <% if attri[0]=="ListPrice" %>
-	  <%attri[1].each  do |price|%>
- 	    <% if price[0]=="FormattedPrice" %>
-		  Price: <%=price[1]%> <br/>
-        <%end%>
-        <% if price[0]=="Amount" %>
-          <%#*Amount:-<%=pric[1]%> <br/>
-        <%end%>
+	  <%g = item['MediumImage'].nil? %>
+
+	  <% if g == false %>
+	    <% item['MediumImage'].each  do |img| %>
+	      <% if img[0]=="URL" %>
+	        <%=image_tag(img[1],:alt=>'Amazon',:title=>'Product')%> <br/>
+	      <%end%>
+	    <%end%>
 	  <%end%>
-    <%end%>
-  <% end %>
 
-<br/>
-<br/>———————————————————— <br/><br/>
-<%end %>
+	  <%item['ItemAttributes'].each  do |attri|%>
+	    <% if attri[0]=="Title" %>
+	      Title: <%=attri[1]%> <br/>
+	    <%end%>
+
+	    <% if attri[0]=="ListPrice" %>
+		  <%attri[1].each  do |price|%>
+	 	    <% if price[0]=="FormattedPrice" %>
+			  Price: <%=price[1]%> <br/>
+	        <%end%>
+	        <% if price[0]=="Amount" %>
+	          <%#*Amount:-<%=pric[1]%> <br/>
+	        <%end%>
+		  <%end%>
+	    <%end%>
+	  <% end %>
+
+	<br/>
+	<br/>———————————————————— <br/><br/>
+	<% end %>
+
+<% end %>
