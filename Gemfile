@@ -13,15 +13,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :production do
-  gem 'pg'
-end
-
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
-  gem 'sqlite3'
+  gem 'annotate','~> 2.4.1.beta'
 end
 
+gem 'pg'
 gem 'jquery-rails'
 gem 'amazon_product'
 # To use ActiveModel has_secure_password
