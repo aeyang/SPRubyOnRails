@@ -27,4 +27,8 @@ LastFM::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Give paperclip path to ImageMagick
+  Paperclip.options[:command_path] = "/usr/bin/"
+
 end

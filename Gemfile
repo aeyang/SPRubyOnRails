@@ -21,6 +21,7 @@ end
 gem 'pg'
 gem 'jquery-rails'
 gem 'amazon_product'
+gem 'paperclip','~> 2.0'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
