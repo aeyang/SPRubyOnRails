@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
+  	@title = @user.username
   end
 
   def new
@@ -12,7 +13,8 @@ class UsersController < ApplicationController
   	@user = User.new(params[:user])
 
   	if @user.save
-  	  #stuff
+      flash[:success] = "Welcome to the Music Explorer!"
+  	  redirect_to @user
   	else
   	  render 'new'
   	end

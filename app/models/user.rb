@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
 	#creates instance variable password
 	attr_accessor :password
 	#Make these accessible to clients because they have to fill in these fields with (form_for)
-	attr_accessible :username, :password, :password_confirmation, :avatar
+	attr_accessible :username, :password, :password_confirmation, :avatar, :avatar_file_name, :avatar_content_type, :avatar_file_size,
+	                :avatar_updated_at
 
 	#Paperclip to attach images
 	has_attached_file :avatar, :styles => { :medium => "300x300", :thumb => "100x100"}
