@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
 
-	#creates instance variable password
-	attr_accessor :password
+   #Declaring User Relationship to Band
+   has_and_belongs_to_many :bands   
+
+   #creates instance variable password in memory
+   attr_accessor :password
 	#Make these accessible to clients because they have to fill in these fields with (form_for)
 	attr_accessible :username, :password, :password_confirmation, :avatar, :avatar_file_name, :avatar_content_type, :avatar_file_size,
 	                :avatar_updated_at
@@ -68,13 +71,17 @@ end
 #
 # Table name: users
 #
-#  id                 :integer         not null, primary key
-#  username           :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  encrypted_password :string(255)
-#  salt               :string(255)
-#  longitude          :float
-#  latitude           :float
+#  id                  :integer         not null, primary key
+#  username            :string(255)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  encrypted_password  :string(255)
+#  salt                :string(255)
+#  longitude           :float
+#  latitude            :float
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
 #
 
