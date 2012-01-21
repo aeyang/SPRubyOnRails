@@ -13,9 +13,11 @@ class UsersController < ApplicationController
   	@user = User.new(params[:user])
 
   	if @user.save
+  	  sign_in @user
       flash[:success] = "Welcome to the Music Explorer!"
   	  redirect_to @user
   	else
+  	  @title = "Sign Up"
   	  render 'new'
   	end
   end
