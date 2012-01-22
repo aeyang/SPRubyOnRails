@@ -8,6 +8,7 @@ LastFM::Application.routes.draw do
   match '/about', :to => "pages#about"
   match '/lastFM', :to => 'pages#lastFM'
   match '/amazon', :to => 'pages#amazon'
+  match '/search', :to => 'pages#search'
 
   match '/signup', :to => 'users#new'
   

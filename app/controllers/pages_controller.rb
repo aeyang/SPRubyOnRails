@@ -36,4 +36,12 @@ class PagesController < ApplicationController
   	
   end
 
+  def search
+    @title = "Search"
+
+    lastapi = LastApi.new
+    @info = lastapi.findArtistInfo("Linkin Park")
+
+  end
+
 end
