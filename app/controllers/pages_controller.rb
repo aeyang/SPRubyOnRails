@@ -38,9 +38,16 @@ class PagesController < ApplicationController
 
   def search
     @title = "Search"
+    @band = Band.new
+   # artist = params[:artist]
+   # if
+   # lastapi = LastApi.new
+   # @info = lastapi.findArtistInfo(params[:artist])
 
-    lastapi = LastApi.new
-    @info = lastapi.findArtistInfo("Linkin Park")
+    respond_to do |format|
+      format.html 
+      format.js
+    end
 
   end
 

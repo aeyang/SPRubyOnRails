@@ -1,0 +1,22 @@
+<% artist = params[:artist] %>
+<% if !artist.nil? %>
+  <% lastapi = LastApi.new %>
+  <% @info = lastapi.findArtistInfo(artist) %>
+<% end %>
+
+$(function() {
+  var list = $("#search_info_ul");
+  //Emptying list
+  if(list.children().length != 0){
+	list.empty();
+  }
+  var items = [];
+  items.push("<li> " + "<%= @info.name %> </li>");
+  items.push("<li> " + "<%= @info.summary %> </li>");
+  items.push("<li> " + "<img src = " + "<%= @info.image(which = :extralarge) %> alt = 'Artist picture'/>" + "</li>");
+  list.append(items.join(' '));
+
+  $("#search_save_div").html("<%= escape_javascript render :partial => 'layouts/saveartist',
+                                                   :locals => {:name => @info.name} %>");
+});
+

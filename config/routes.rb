@@ -1,8 +1,13 @@
 LastFM::Application.routes.draw do
+  get "bands/create"
+
+  get "bands/destroy"
+
   get "sessions/new"
 
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :bands, :only => [:create, :destroy]
 
   root :to => 'pages#home'
   match '/about', :to => "pages#about"

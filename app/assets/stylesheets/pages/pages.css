@@ -56,3 +56,19 @@ html, body{
   box-shadow: 10px 10px 5px #888888;
   margin: 20px;
 }
+
+/* Search page styles */
+
+#search_info_div {
+  border: 2px solid;
+  border-radius: 25px;
+  width: 60%;
+  height: 400px;
+  box-shadow: 10px 10px 5px #888888;
+  margin: 20px;
+}
+
+#search_save_div {
+  width: 100px;
+  height: 100px;
+}
