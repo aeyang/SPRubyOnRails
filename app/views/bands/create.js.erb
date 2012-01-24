@@ -1,0 +1,11 @@
+$(function() {
+
+	<% @band = Band.new(params[:band]) %>
+	<% if current_user.bands << @band %>
+	  
+	  //#removing the submit button 
+	  $("#new_band").remove();
+	  $('body').append('<b id="save_msg"> <%= @band.name %> saved to your profile </b>');
+
+	<% end %>
+});

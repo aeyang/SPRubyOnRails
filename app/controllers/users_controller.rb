@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
   	@title = @user.username
+    @lastapi = LastApi.new
   end
 
   def new

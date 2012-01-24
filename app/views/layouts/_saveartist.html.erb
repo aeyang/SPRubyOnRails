@@ -1,4 +1,4 @@
-<%= form_for(@band) do |f| %>
-  <%= f.hidden_field :artist, :value => name %>
+<%= form_for @band, :remote => true do |f| %>
+  <%= f.hidden_field :name, :value => name %>
   <%= f.submit "Save band/artist?" %>
 <% end %>

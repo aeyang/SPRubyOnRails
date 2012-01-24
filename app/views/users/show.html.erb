@@ -13,3 +13,12 @@
     </td>
   </tr>
 </table>
+
+<b> Bands you are following: </b>
+<div>
+  <% @user.bands.each do |band| %>
+    <img src="<%= @lastapi.findArtistInfo(band.name).image(which = :large) %>"></img>
+    <%= band.name %>
+    <br />
+ <% end %>
+</div>

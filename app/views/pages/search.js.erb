@@ -5,18 +5,25 @@
 <% end %>
 
 $(function() {
+  //-> Displays Band information on the screen
   var list = $("#search_info_ul");
   //Emptying list
   if(list.children().length != 0){
 	list.empty();
   }
-  var items = [];
-  items.push("<li> " + "<%= @info.name %> </li>");
-  items.push("<li> " + "<%= @info.summary %> </li>");
-  items.push("<li> " + "<img src = " + "<%= @info.image(which = :extralarge) %> alt = 'Artist picture'/>" + "</li>");
-  list.append(items.join(' '));
+  $("#save_msg").remove();
 
-  $("#search_save_div").html("<%= escape_javascript render :partial => 'layouts/saveartist',
+  <% if @info.mbid.empty? %>
+      list.append('<li><b>Sorry, Name Not Recognized!</b></li>');
+  <% else %>
+	  var items = [];
+	  items.push("<li> " + "<%= @info.name %> </li>");
+	  items.push("<li> " + "<%= @info.summary %> </li>");
+	  items.push("<li> " + "<img src = " + "<%= @info.image(which = :extralarge) %> alt = 'Artist picture'/>" + "</li>");
+	  list.append(items.join(' '));
+	  //-> Calls a helper to inject the save button
+      $("#search_save_div").html("<%= escape_javascript render :partial => 'layouts/saveartist',
                                                    :locals => {:name => @info.name} %>");
+  <% end %>
 });
 
