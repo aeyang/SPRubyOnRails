@@ -9,10 +9,18 @@ $(function() {
   var list = $("#search_info_ul");
   //Emptying list
   if(list.children().length != 0){
-	list.empty();
+	   list.empty();
   }
-  $("#save_msg").remove();
 
+  //removing the "save success" message
+  if($("#save_msg").length != 0){
+     $("#save_msg").remove();
+  }
+
+  //removing the submit button 
+  if($("#new_band").length != 0){
+    $("#new_band").remove();
+  }
   <% if @info.mbid.empty? %>
       list.append('<li><b>Sorry, Name Not Recognized!</b></li>');
   <% else %>
@@ -22,8 +30,7 @@ $(function() {
 	  items.push("<li> " + "<img src = " + "<%= @info.image(which = :extralarge) %> alt = 'Artist picture'/>" + "</li>");
 	  list.append(items.join(' '));
 	  //-> Calls a helper to inject the save button
-      $("#search_save_div").html("<%= escape_javascript render :partial => 'layouts/saveartist',
-                                                   :locals => {:name => @info.name} %>");
+      $("#search_save_div").html("<%= escape_javascript render :partial => 'layouts/saveartist', :locals => {:name => @info.name} %>");
   <% end %>
 });
 
