@@ -40,7 +40,118 @@ h1
 }
 
 /* Header styles */
-nav {
+.navigation{
+    margin: 0px auto;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 1.4px;
+}
+.navigation .item{
+    position:absolute;
+}
+.user{
+    top:30px;
+    left:5%;
+}
+.home{
+   top:30px;
+   left:25%;
+}
+.albums{
+   top:30px;
+   left:45%;
+}
+.search{
+   top:30px;
+   left:65%;
+}
+.concerts{
+   top:30px;
+   left:85%;
+}
+a.icon{
+    width:52px;
+    height:52px;
+    position:absolute;
+    top:0px;
+    left:0px;
+    cursor:pointer;
+}
+.user a.icon{
+    background:transparent url(../assets/navigation/user.png) no-repeat 0px 0px;
+}
+.home a.icon{
+    background:transparent url(../assets/navigation/home.png) no-repeat 0px 0px;
+}
+.albums a.icon{
+    background:transparent url(../assets/navigation/albums.png) no-repeat 0px 0px;
+}
+.search a.icon{
+    background:transparent url(../assets/navigation/search.png) no-repeat 0px 0px;
+}
+.concerts a.icon{
+    background:transparent url(../assets/navigation/concerts.png) no-repeat 0px 0px;
+}
+.navigation .item a.active{
+    background-position:0px -52px;
+}
+.item img.circle{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:52px;
+    height:52px;
+    opacity:0.1;
+}
+.item h2{
+    position:absolute;
+    width:147px;
+    height:52px;
+    color:#222;
+    font-size:18px;
+    top:0px;
+    left:52px;
+    text-indent:10px;
+    line-height:52px;
+    text-shadow:1px 1px 1px #fff;
+    text-transform:uppercase;
+}
+.item h2.active{
+    color:#fff;
+    text-shadow:1px 0px 1px #555;
+}
+.item ul{
+    list-style:none;
+    position:absolute;
+    top:45px;
+    left:20px;
+    display:none;
+}
+.item ul li a{
+    font-size:15px;
+    text-decoration:none;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:#222;
+    padding:3px;
+    float:left;
+    clear:both;
+    width:100px;
+    text-shadow:1px 1px 1px #fff;
+}
+.item ul li a:hover{
+    background-color:#fff;
+    color:#444;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    -moz-box-shadow:1px 1px 4px #666;
+    -webkit-box-shadow:1px 1px 4px #666;
+    box-shadow:1px 1px 4px #666;
+}
+/*nav {
     float:right;
     padding 0 0.7em;
     white-space: nowrap;
@@ -54,7 +165,7 @@ nav ul {
 nav ul li{
     list-style-type:none;
     display: inline-block; /*This is what makes the header links line up horizontally*/
-    padding: 0.2em 0;
+    /*padding: 0.2em 0;
 }
 
 nav ul li a{
@@ -68,7 +179,7 @@ nav ul li a:visited {
 
 nav ul li a:hover {
     text-decoration: underline;
-}
+}*/
 
 /* Flash styles */
 .flash_notice {
