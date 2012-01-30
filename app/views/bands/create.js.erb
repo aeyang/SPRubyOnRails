@@ -1,11 +1,31 @@
 $(function() {
 
-	<% @band = Band.new(params[:band]) %>
-	<% if current_user.bands << @band %>
-	  
-	  //#removing the submit button 
-	  $("#new_band").remove();
-	  $('body').append('<b id="save_msg"> <%= @band.name %> saved to your profile </b>');
-
+	//If band is not already in the DB
+	<% if !Band.find(:all).collect {|a| a.name.downcase}.include?(params[:band][:name].downcase) %>
+	   //create it
+	   <% @band = Band.new(params[:band]) %>
+	<% else %>
+	   //find the one in the DB
+	   <% @band = Band.find(:first, :conditions => [ "lower(name) = ?", params[:band][:name].downcase]) %>
 	<% end %>
+
+	// If exists the band in the DB and the User is not already following it
+	<% if !@band.nil? && !current_user.bands.collect {|a| a.name.downcase}.include?(@band.name.downcase) %>
+	    
+		<% if current_user.bands << @band %>
+		  
+		  //#removing the submit button 
+		  $("#new_band").remove();
+		  <% flash[:success] = "#{@band.name} saved to your profile!" %>
+		  $('body').append('<b id="save_msg"> <%= @band.name %> saved to your profile </b>');
+
+		<% else %>
+		  <% flash[:error] = "Error saving Band to your profile" %>
+		  window.location = '<%= search_path %>';
+		<% end %>
+
+    <% else %>
+      <% flash[:error] = "You are already following this band!" %>
+      window.location = '<%= search_path %>';
+    <% end %>
 });

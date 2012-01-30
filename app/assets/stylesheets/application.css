@@ -53,7 +53,7 @@ nav ul {
 
 nav ul li{
     list-style-type:none;
-    display: inline-block; /*This is what makes the links line up horizontally*/
+    display: inline-block; /*This is what makes the header links line up horizontally*/
     padding: 0.2em 0;
 }
 
@@ -68,4 +68,28 @@ nav ul li a:visited {
 
 nav ul li a:hover {
     text-decoration: underline;
+}
+
+/* Flash styles */
+.flash_notice {
+    background-color: red;
+    border: black 3px solid;
+    margin: 10px;
+    padding: 10px;
+    width: 50%;
+}
+
+.flash_success{
+    color: green;
+    border: green 3px solid;
+    padding: 10px;
+    width: 50%;
+}
+
+.flash_error{
+    background-color: red;
+    border: black 3px solid;
+    margin: 10px;
+    padding: 10px;
+    width: 50%;
 }
