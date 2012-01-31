@@ -12,6 +12,12 @@ html, body{
   left: 3%;
 }
 
+/* about page styles */
+#about_content_div{
+  position:relative;
+  top:150px;
+}
+
 /* lastFM page styles */
 
 #lastFM_content_div{
