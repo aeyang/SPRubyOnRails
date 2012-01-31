@@ -1,8 +1,10 @@
-<h1 id="amazon"> The Amazon API [server-side gem]</h1>
+<h1 id="amazon"> </h1>
 
 <!-- Rails Search Form -->
+<div id="amazon_content_div">
+
 <%= form_tag(amazon_path, :method => 'get') do %>
-  <h3> Search <img src='../../assets/images/amazonlogo.jpg' alt='Amazon.com' id='amazon_amazon_img' /> for Albums </h3>
+  <h3> Search for Albums </h3>
   <%= label_tag(:amazon_search_form, "by Band/Artist:") %>
   <%= text_field_tag(:amazon_search_form) %>
   <%= submit_tag("Search") %>
@@ -70,3 +72,5 @@
 	<% end %>
 
 <% end %>
+
+</div>

@@ -1,23 +1,21 @@
-<header>
-	<nav>
-
+<div>
 	  <div class="navigation" id="nav">
 
 		<div class="item home">
 		 <img src="../assets/navigation/bg_home.png" alt="" width="199" height="199" class="circle"/>
 		 <a href="#" class="icon"></a>
 		 <h2>Home</h2>
-		  <ul>
-		     <li> <%= link_to "Home", root_path %> </li>
-		     <li> <%= link_to "About", about_path %></li>
-		  </ul>
+		 <ul>
+		    <li> <%= link_to "Home", root_path %> </li>
+		    <li> <%= link_to "About", about_path %></li>
+		 </ul>
 		</div>
 
 		 <div class="item user">
-		 <h2>User</h2>
-		 <img src="../assets/navigation/bg_user.png" alt="" width="199" height="199" class="circle"/>
-		 <a href="#" class="icon"></a>
-		 <ul>
+		   <img src="../assets/navigation/bg_user.png" alt="" width="199" height="199" class="circle"/>
+		   <a href="#" class="icon"></a>
+		   <h2>User</h2>
+		   <ul>
 		     <% if signed_in? %>
 		       <li> <%= link_to "Profile", current_user %> </li>
 		       <li> <%= link_to "Sign out", signout_path, :method => :delete %></li>
@@ -25,25 +23,25 @@
 		       <li><%= link_to "Sign in", signin_path %></li>
 		       <li> <%= link_to "Sign Up!", new_user_path %> </li>
 		     <% end %>
-		 </ul>
+		   </ul>
 		 </div>
 
 		 <div class="item concerts">
-		 <img src="../assets/navigation/bg_concerts.png" alt="" width="199" height="199" class="circle"/>
-		 <a href="#" class="icon"></a>
-		 <h2>Concerts</h2>
-		 <ul>
+		   <img src="../assets/navigation/bg_concerts.png" alt="" width="199" height="199" class="circle"/>
+		   <a href="#" class="icon"></a>
+		   <h2>Concerts</h2>
+		   <ul>
 		     <li> <%= link_to "LastFM", lastFM_path %></li>
-		 </ul>
+		   </ul>
 		 </div>
 
 		 <div class="item albums">
-		<img src="../assets/navigation/bg_albums.png" alt="" width="199" height="199" class="circle"/>
-		 <a href="#" class="icon"></a>
-		  <h2>Albums</h2>
-		   <ul>
-		      <li> <%= link_to "Amazon", amazon_path %></li>
-	       </ul>
+		   <img src="../assets/navigation/bg_albums.png" alt="" width="199" height="199" class="circle"/>
+		   <a href="#" class="icon"></a>
+		   <h2>Albums</h2>
+		     <ul>
+		        <li> <%= link_to "Amazon", amazon_path %></li>
+	         </ul>
 	 	 </div>
 
 	 	 <div class="item search">
@@ -58,5 +56,4 @@
 	 	 </div>
 
 	  </div>	 
-   </nav>
-</header>
+</div>

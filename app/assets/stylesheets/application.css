@@ -37,6 +37,9 @@ h1
 {
 	font-family: scriptStyle;
 	font-size: 60px;
+    margin:0px;
+    padding:0px;
+    border:0px;
 }
 
 /* Header styles */
@@ -51,23 +54,23 @@ h1
 .navigation .item{
     position:absolute;
 }
-.user{
+.home{
     top:30px;
     left:5%;
 }
-.home{
+.user{
    top:30px;
    left:25%;
 }
-.albums{
+.concerts{
    top:30px;
    left:45%;
 }
-.search{
+.albums{
    top:30px;
    left:65%;
 }
-.concerts{
+.search{
    top:30px;
    left:85%;
 }
@@ -126,7 +129,7 @@ a.icon{
     list-style:none;
     position:absolute;
     top:45px;
-    left:20px;
+    left:15px;
     display:none;
 }
 .item ul li a{

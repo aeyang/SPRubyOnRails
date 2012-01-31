@@ -1,10 +1,10 @@
+<div id="search_content_div">
+
 <%= form_tag(search_path, :method => 'get', :remote => true) do %>
   <div>
     <%= label_tag :artist %>
     <%= text_field_tag :artist %>
-  </div>
-  <div>
-    <%= submit_tag "Search" %>
+     <%= submit_tag "Search" %>
   </div>
 <% end %>
 
@@ -16,4 +16,6 @@
 </div>
 
 <div id="search_save_div">
+</div>
+
 </div>

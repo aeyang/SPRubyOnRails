@@ -2,7 +2,11 @@
  They will automatically be included in application.css.
  You can use Sass (SCSS) here: http://sass-lang.com/ 
  */
- 
+ #usershow_content_div{
+ 	position: relative;
+ 	top:150px;
+ }
+
 #users_signup_h1{
 	position: fixed;
 	left: 45%;

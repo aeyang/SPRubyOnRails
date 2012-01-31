@@ -5,7 +5,20 @@ html, body{
   height:100%;
 }
 
+/* home page styles */
+#home_title_h1{
+  position: absolute;
+  top: 30%;
+  left: 3%;
+}
+
 /* lastFM page styles */
+
+#lastFM_content_div{
+  position:relative;
+  top:150px;
+}
+
 #lastFM_upcoming_submit{
 	margin: 10px;
 }
@@ -15,7 +28,6 @@ html, body{
   padding:0;
   width: 49%;
   height: 100%;
-  border: 1px solid;
   float:left;
 }
 
@@ -28,8 +40,6 @@ html, body{
 }
 
 #lastFM_map_div {
-	border: 2px solid;
-	border-radius: 25px;
  	width: 500px; 
 	height: 400px; 
 	float: none;
@@ -38,8 +48,6 @@ html, body{
 }
 
 #lastFM_earth_div {
-  border: 2px solid;
-  border-radius: 25px;
   width: 500px;
   height: 400px;
   float: none;
@@ -48,6 +56,11 @@ html, body{
 }
 
 /* Amazon page styles */
+#amazon_content_div{
+  position: relative;
+  top: 150px;
+}
+
 #amazon_widget_div {
   border: 2px solid;
   width: 500px; 
@@ -58,9 +71,12 @@ html, body{
 }
 
 /* Search page styles */
+#search_content_div{
+  position:relative;
+  top:170px;  
+}
 
 #search_info_div {
-  border: 2px solid;
   border-radius: 25px;
   box-shadow: 10px 10px 5px #888888;
   margin: 20px;
