@@ -53,7 +53,7 @@ function submitHandler(callback){
 				  	for(var i = 0; i < data.events.event.length; i++){
 				  		//Grab picture and title of the event and push it into an array
 				  		items.push('<li class="clickable">' + '<img src='  + data.events.event[i].image[2]["#text"] + ' alt="eventPic"/>' 
-				  		+ data.events.event[i].title + '</li>');
+				  		+ '<p>' + data.events.event[i].title + '</p>' + '</li>');
 				  	}
 				}
 				//else, we only have one event, and its an event object.
@@ -76,7 +76,7 @@ function submitHandler(callback){
 function eventClick(){
 	//We do the same as above, check if there is only one event object, or an array of event objects.
 	if($.isArray(globalData.events.event)){
-		for(var k = 0; k < globalData.events.event.length; k++){
+		/*for(var k = 0; k < globalData.events.event.length; k++){
 			var temp = globalData.events.event[k];
 
 			if(temp.title === $(this).text()){
@@ -84,7 +84,13 @@ function eventClick(){
 			   eventOfInterest = temp;
 			   dynamicLoad();
 			}
-		}
+		}*/
+
+		/* Fix. This will display the right times for concerts with the same name. Can work for one event too*/
+		temp = globalData.events.event[$(this).index()];
+		$(this).append('<ul> <li>  Starts: '  + temp.startDate +  '<br/>  Ends: ' + temp.endDate +  '</li> </ul>');
+		eventOfInterest = temp;
+		dynamicLoad();
 	}
 	else{
 		if(globalData.events.event.title === $(this).text()){

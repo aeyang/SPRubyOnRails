@@ -12,6 +12,16 @@ html, body{
   left: 3%;
 }
 
+#home_feed_div{
+  border: solid 3px;
+  position: relative;
+  top:300px;
+  left:40%;
+  width: 600px;
+  height: 600px;
+
+}
+
 /* about page styles */
 #about_content_div{
   position:relative;
@@ -35,6 +45,12 @@ html, body{
   width: 49%;
   height: 100%;
   float:left;
+  /* try this
+  position:absolute;
+  top:0;
+  left:0;
+  width:50%;
+  */
 }
 
 #lastFM_right_div{
@@ -43,6 +59,12 @@ html, body{
   width: 49%;
   height: 100%;
   float:right;
+  /* try this
+  position:absolute;
+  top:0;
+  right:0;
+  width:50%;
+  */
 }
 
 #lastFM_map_div {
@@ -59,6 +81,23 @@ html, body{
   float: none;
   box-shadow: 10px 10px 5px #888888;
   margin: 20px;
+}
+
+#lastFM_events_list {
+  margin:0;
+  padding:0;
+  list-style-type: none;
+
+}
+
+#lastFM_events_list li{
+  margin: 5px 0px 5px 0px;
+  border: solid 1px;
+  display: block;
+}
+
+#lastFM_events_list li img{
+  vertical-align: text-top;
 }
 
 /* Amazon page styles */
