@@ -14,12 +14,12 @@
  }
 
 #users_signup_h1{
-	position: absolute;
+	position: relative;
 	left: 45%;
 }
 
 #users_signup_div{
-	position: fixed;
+	position: relative;
 	top: 40%;
 	left: 42%;
 }
