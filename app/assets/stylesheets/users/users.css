@@ -29,15 +29,47 @@ input[type="submit"]{
 	font-size: 30px;
 }
 
- .user_field {
+.user_field {
  	padding: 10px;
  	margin-bottom: 10px;
- }
+}
 
 .user_field label {
 	font-family: Arial;
 	font-style: bold;
 	font-size: 22px;
+}
+
+#bands_following_list{
+	list-style-type: none;
+}
+
+#bands_following_list li{
+	float:left;
+	padding: 25px;
+}
+
+#bands_following_list li img:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+    cursor: hand;
+    cursor: pointer
+}
+#bands_following_list li img {
+    opacity: 0.4;
+    filter:  alpha(opacity=50);
+}
+#bands_following_list li p {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    font-family: Helvetica, sans-serif;
+    font-size:14pt;
+}
+
+#active{
+	opacity: 1.0;
+	filter:alpha(opacity=100);
 }
 
 /* Error partial style */

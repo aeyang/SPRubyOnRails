@@ -1,29 +1,31 @@
 
 <div id="usershow_content_div">
 
-<table summary="Profile information">
-  <tr>
-    <td>
-      <h1>
-        <%= image_tag @user.avatar(:medium), :alt => "" %>
-        <%= @user.username %>
-      </h1>
-    </td>
+  <table summary="Profile information">
+    <tr>
+      <td>
+        <h1>
+          <%= image_tag @user.avatar(:medium), :alt => "" %>
+          <%= @user.username %>
+        </h1>
+      </td>
 
-    <td>
-      <strong>Name</strong> <%= @user.username %><br/>
-      <strong>URL</strong>  <%= link_to user_path(@user), @user %>
-    </td>
-  </tr>
-</table>
+      <td>
+        <strong>Name</strong> <%= @user.username %><br/>
+        <strong>URL</strong>  <%= link_to user_path(@user), @user %>
+      </td>
+    </tr>
+  </table>
 
-<b> Bands you are following: </b>
-<div>
-  <% @user.bands.each do |band| %>
-    <img src="<%= @lastapi.findArtistInfo(band.name).image(which = :large) %>"></img>
-    <%= band.name %>
-    <br />
- <% end %>
-</div>
+  <b> Bands you are following: </b>
+  <div>
+    <ul id="bands_following_list">
+    <% @user.bands.each do |band| %>
+      <li>
+        <p><%= band.name %></p>
+        <img src="<%= @lastapi.findArtistInfo(band.name).image(which = :extralarge) %>"></img> 
+      </li>
+    <% end %>
+  </div>
 
 </div>
