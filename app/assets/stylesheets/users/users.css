@@ -44,6 +44,11 @@ input[type="submit"]{
 	list-style-type: none;
 }
 
+#bands_following_list li #active{
+	opacity: 1.0;
+	filter:alpha(opacity=100);
+}
+
 #bands_following_list li{
 	float:left;
 	padding: 25px;
@@ -65,11 +70,6 @@ input[type="submit"]{
     width: 80%;
     font-family: Helvetica, sans-serif;
     font-size:14pt;
-}
-
-#active{
-	opacity: 1.0;
-	filter:alpha(opacity=100);
 }
 
 /* Error partial style */

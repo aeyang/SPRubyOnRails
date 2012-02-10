@@ -9,7 +9,10 @@ $(function(){
 
 function clickHandler(event){
    
+   $("#active").removeAttr('id');
    $(this).attr("id", "active");
+   var bandname = $(this).parent().children('p').text().replace(/ /g, '+');
+   console.log(bandname);
 
    $(".concerts img, .albums img").stop().animate({
             'width'     :'199px',
@@ -25,6 +28,10 @@ function clickHandler(event){
                    	'top'       :'0px',
                     'left'      :'0px',
                   	'opacity'   :'0.1'
-                   },500,'easeOutBack');
+                   },5000,'easeOutBack');
     });
+
+    $(".albums ul li a").replaceWith(
+         "<a href=/amazon?amazon_search_form=" + bandname + " class=items albums>Amazon</a>"
+       );
 }
