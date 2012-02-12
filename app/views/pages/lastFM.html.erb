@@ -2,28 +2,44 @@
 
 <div id="lastFM_content_div">
 
+   <!--
    <form id="lastFM_upcoming_form">
-     <label for="lastFM_input"> Find upcoming Events for: </label> <input type="text" id="lastFM_input"/>
+     <label for="lastFM_input"> Find upcoming Events for: </label> 
+     <input type="text" id="lastFM_input"/>
      <button type="button" id="lastFM_upcoming_submit">Lets Go!</button>
    </form>
-
-<div id="lastFM_left_div">
-   <p> Upcoming Events List: </p>
-   <ul id="lastFM_events_list">
-   </ul>
-</div>
-
-<div id="lastFM_right_div">
-   <div id="lastFM_map_div">
-      <p>Select an Event to see the map!</p>
-   </div>
-
-   <!--
-   <div id="lastFM_earth_div">
-      <p>Select an Event to see the globe!</p>
-   </div>
    -->
+
+   <%= form_tag(lastFM_path, :method => 'get', :remote => true) do %>
+     <%= label_tag :lastFM_search_form, "Find Upcoming Concerts and Festivals" %>
+     <%= text_field_tag :lastFM_search_form %>
+     <%= submit_tag "List" %>
+   <% end %>
+
+
+   <div id="lastFM_left_div">
+      <p> Upcoming Events List: </p>
+      <ul id="lastFM_events_list">
+      </ul>
+   </div>
+
+   <div id="lastFM_right_div">
+      <div id="lastFM_map_div">
+         <p>Select an Event to see the map!</p>
+      </div>
+
+      <!--
+      <div id="lastFM_earth_div">
+         <p>Select an Event to see the globe!</p>
+      </div>
+      -->
 </div>
 
 </div>
 
+<script>
+  $.ajax({
+     type: "GET",
+     url: "/lastFM?lastFM_search_form=<%=params[:lastFM_search_form]%>"
+  });
+</script>  

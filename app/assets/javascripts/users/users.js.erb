@@ -12,7 +12,6 @@ function clickHandler(event){
    $("#active").removeAttr('id');
    $(this).attr("id", "active");
    var bandname = $(this).parent().children('p').text().replace(/ /g, '+');
-   console.log(bandname);
 
    $(".concerts img, .albums img").stop().animate({
             'width'     :'199px',
@@ -32,6 +31,8 @@ function clickHandler(event){
     });
 
     $(".albums ul li a").replaceWith(
-         "<a href=/amazon?amazon_search_form=" + bandname + " class=items albums>Amazon</a>"
-       );
+         "<a href=/amazon?amazon_search_form=" + bandname + " class=items albums>Amazon</a>");
+
+    $(".concerts ul li a").replaceWith(
+        "<a href=/lastFM?lastFM_search_form=" + bandname + " class=items concerts>LastFM</a>");
 }
