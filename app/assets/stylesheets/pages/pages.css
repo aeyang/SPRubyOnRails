@@ -6,6 +6,17 @@ html, body{
 }
 
 /* home page styles */
+h3{
+  padding:5px;
+  margin:0;
+}
+
+h5{
+  padding:0;
+  margin:0;
+  text-align:center;
+}
+
 #home_title_h1{
   position: absolute;
   top: 30%;
@@ -13,13 +24,41 @@ html, body{
 }
 
 #home_feed_div{
-  border: solid 3px;
-  position: relative;
-  top:300px;
-  left:40%;
-  width: 600px;
-  height: 600px;
+  border: solid 2px;
+  position: absolute;
+  top: 42%;
+  width: 60%;
+  left:30%;
+  height: 100%;
+  background-color: grey;
+  opacity: 0.7;
+  border-radius: 25px;
+}
 
+/*.hidden{
+  visibility: hidden;
+}*/
+
+#signin_msg_home{
+  text-align: center;
+  background-color: white;
+  font-size: 30px;
+  font-family: Palatino;
+}
+
+#home_newsfeed_button{
+  position: absolute;
+  left: 55%;
+  top: 35%;
+  width: 10%;
+  height: 7%;
+
+}
+
+#newsfeed_story_p {
+    margin: 5px;
+    width: 75%;
+    font-family: Arial;
 }
 
 /* about page styles */

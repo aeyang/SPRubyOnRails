@@ -2,6 +2,14 @@ class PagesController < ApplicationController
 
   def home
     @title = "Home";
+    @resp = nil
+    if signed_in?
+      @resp = Array.new 
+      current_user.bands.each do |band|
+        temp = News.new(band.name).getStory
+        @resp << temp unless temp.nil?
+      end 
+    end
   end
 
   def about

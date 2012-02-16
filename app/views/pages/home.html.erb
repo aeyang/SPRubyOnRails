@@ -1,4 +1,18 @@
 <h1 id="home_title_h1">Welcome to <br/> Harmony</h1>
 
-<div id="home_feed_div"> News Feed from Gigulator </div>
+<button id="home_newsfeed_button">News Feed</button>
+<div id="home_feed_div" class="hidden"> 
+<% if @resp.nil? %>
+  <p id="signin_msg_home"> Please Sign in to see latest news from your saved bands! </p>
+<% else %>
+  <% @resp.each do |story| %>
+    <div>
+      <h3> <%= story.title %>  |  <%= story.Date %>  </h3>
+      <h5> Source: <%= story.Source %> </h5>
+      <p id="newsfeed_story_p"><%= story.Snippet %></p>
+      <p> Full Story: <a href=<%= story.Url %>> <%= story.Url %> </a></p>
+    </div>
+  <% end %>
+<% end %>
+</div>
 
