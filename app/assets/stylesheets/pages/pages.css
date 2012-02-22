@@ -106,6 +106,15 @@ h5{
   */
 }
 
+strong{
+  margin-top:15px;
+}
+
+#lastFM_content_div{
+  position:relative;
+  top:200px;  
+}
+
 #lastFM_map_div {
   position: fixed;
  	width: 500px; 
@@ -115,13 +124,6 @@ h5{
   margin: 20px;
 }
 
-#lastFM_earth_div {
-  width: 500px;
-  height: 400px;
-  float: none;
-  box-shadow: 10px 10px 5px #888888;
-  margin: 20px;
-}
 
 #lastFM_events_list {
   margin:0;
@@ -140,10 +142,54 @@ h5{
   vertical-align: text-top;
 }
 
+.lastFM_panel_front h2{
+  padding:8px 6px 6px 6px;
+  font-size:15px;
+  color:#eee;
+  letter-spacing:-1px;
+  float:left;
+}
+
+.lastFM_panel_front img{
+  float:left;
+  border:1px solid #000;
+  margin-right:10px;
+  display: inline-block;
+}
+
+.lastFM_panel_front{
+  /*border:1px solid #008AFF;*/
+  margin-top:10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-radius:25px;
+}
+
+.lastFM_info_span{
+  display:none;
+  background-color:#000;
+  margin: 10px;
+  opacity:0.8;
+}
+
+.lastFM_info_span p, .lastFM_info_span h3{
+  color:white;
+}
+
+.sub_panel:hover span{
+  display:block;
+}
+
+.sub_panel{
+  clear:both;
+  float:left;
+  width:100%;
+}
+
 /* Amazon page styles */
 #amazon_content_div{
   position: relative;
-  top: 150px;
+  top: 200px;
 }
 
 #amazon_widget_div {

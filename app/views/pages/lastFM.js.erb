@@ -3,7 +3,6 @@ var eventOfInterest;
 
 $(function () {
 
-    alert("<%= params[:lastFM_search_form] %>");
     var getEventsURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getevents&format=json&api_key=f5d61ca601bcc9956237b6377f70abf6"
     
     //Begin JSON call. 1st parameter is base url
@@ -18,7 +17,7 @@ $(function () {
       //third parameter is the callback function that gets passed the json
       function (data){
         globalData = data;
-        var list = $("#lastFM_events_list");
+        var list = $("#lastFM_left_div");
         
         //Emptying list
         if(list.children().length != 0){
@@ -33,7 +32,7 @@ $(function () {
         //case that there is only one event. 
         //First check if there are absolutely no events
         if(data.events.event == null){
-          console.log("no events");
+          items.push("<strong> Sorry, no events to show for <%= params[:lastFM_search_form] %> </strong>");
         }
         else {
           //now, check if "events" is an array. If it is it means we have more than one 
@@ -41,23 +40,39 @@ $(function () {
           if($.isArray(data.events.event)){
             for(var i = 0; i < data.events.event.length; i++){
               //Grab picture and title of the event and push it into an array
-              items.push('<li class="clickable">' + '<img src='  + data.events.event[i].image[2]["#text"] + ' alt="eventPic"/>' 
-              + '<p>' + data.events.event[i].title + '</p>' + '</li>');
-            }
-        }
-        //else, we only have one event, and its an event object.
-        else{
-          //Grab picture and title of the event and push it into an array
-          items.push('<li class="clickable">' + '<img src='  + data.events.event.image[2]["#text"] + ' alt="eventPic"/>'
-          + data.events.event.title + '</li>');
-        }
+              items.push(
+                  '<div class="sub_panel">' +
+                    '<div class="lastFM_panel_front">' +
+                      '<img src='  + data.events.event[i].image[2]["#text"] + ' alt="eventPic"/>' + 
+                      '<h2>' + data.events.event[i].title + '</h2>' +  
+                    '</div>' +
 
-        //Add all elements in list to the Events list
-        list.append(items.join(' '));
+                    '<span class="lastFM_info_span">' +
+                      '<img src='  + data.events.event[i].image[3]["#text"] + ' alt="eventPic"/>' +
+                      '<h3>' + data.events.event[i]["title"] + '</h3>' +
+                      '<p> Location: ' + data.events.event[i].venue["name"] + " @ " + data.events.event[i].venue.location["city"] + ", " + data.events.event[i].venue.location["country"] + '</p>' +
+                      '<p>' + "First day: " + data.events.event[i]["startDate"]  + '</p>' +
+                    '</span>' +
+                  '</div>'
+              );
+            }
+          }
+          //else, we only have one event, and its an event object.
+          else{
+            //Grab picture and title of the event and push it into an array
+            items.push('<li class="clickable">' + '<img src='  + data.events.event.image[3]["#text"] + ' alt="eventPic"/>'
+            + data.events.event.title + '</li>');
+          }
+          //list.append(items.join(' '));
       }
 
+      //Add all elements in list to the Events list
+      list.append(items.join(' '));
+      
       //Set all <li> to be clickable and specify a click handler for all events
-      $('li.clickable').css('cursor', 'pointer').click(eventClick);
+      //$('li.clickable').css('cursor', 'pointer').click(eventClick);
+      $(".lastFM_info_span").css('cursor', 'pointer').click(eventClick);
+      $(".lastFM_panel_front").hover(infobox);
       });
   });
 
@@ -65,16 +80,16 @@ function eventClick(){
   //We do the same as above, check if there is only one event object, or an array of event objects.
   if($.isArray(globalData.events.event)){
 
-    /* Fix. This will display the right times for concerts with the same name. Can work for one event too*/
+    /* A Fix. This will display the right times for concerts with the same name. Can work for one event too*/
     temp = globalData.events.event[$(this).index()];
-    $(this).append('<ul> <li>  Starts: '  + temp.startDate +  '<br/>  Ends: ' + temp.endDate +  '</li> </ul>');
+    //$(this).append('<ul> <li>  Starts: '  + temp.startDate +  '<br/>  Ends: ' + temp.endDate +  '</li> </ul>');
     eventOfInterest = temp;
     dynamicLoad();
   }
   else{
     if(globalData.events.event.title === $(this).text()){
-      $(this).append('<ul> <li>  Starts: '  + globalData.events.event.startDate +  '<br/>  Ends: ' + 
-        globalData.events.event.endDate + '</li> </ul>');
+      //$(this).append('<ul> <li>  Starts: '  + globalData.events.event.startDate +  '<br/>  Ends: ' + 
+        //globalData.events.event.endDate + '</li> </ul>');
       eventOfInterest = globalData.events.event; 
       dynamicLoad(); 
     }
@@ -104,4 +119,17 @@ function showConcertMap(){
   };
 
   map = new google.maps.Map($("#lastFM_map_div")[0], mapOptions);
+
+  addMarker(map, googleLatAndLong, "Concert Location", 
+    eventOfInterest.venue.location["city"] + ',' + eventOfInterest.venue.location["country"]);
+}
+
+function infobox(){
+  $(".sub_panel").hover(function() {
+        $(this).find('div.lastFM_panel_front').hide();
+        $(this).find('span').show();
+        } , function() {
+        $(this).find('span').hide('fast');
+        $(this).find('div.lastFM_panel_front').show('fast');
+      }); 
 }

@@ -57,8 +57,7 @@ function showMap(coords){
 	map = new google.maps.Map($("#about_map_div")[0], mapOptions);  
     
     
-    addMarker(map, googleLatAndLong, 
-	    "Your Location", "You are here: " + coords.latitude + "," + coords.longitude);
+  addMarker(map, googleLatAndLong, "Your Location", "You are here: " + coords.latitude + "," + coords.longitude);
 }
 
 function addMarker(map, latlong, title, content){
