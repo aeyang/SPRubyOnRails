@@ -98,3 +98,7 @@ function displayError(error){
 	
 	$("#about_msg_div").html(errorMessage);
 }
+
+function holler(){
+  alert("up in the holler");
+}

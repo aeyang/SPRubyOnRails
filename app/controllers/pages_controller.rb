@@ -19,12 +19,6 @@ class PagesController < ApplicationController
   def lastFM
   	@title = "LastFM"
 
-    #concert_search = params[:lastFM_search_form]
-
-    #if !concert_search.nil?
-    #  render :partial => 'pages/lastFM.js'
-    #end
-
     respond_to do |format|
       format.html
       format.js

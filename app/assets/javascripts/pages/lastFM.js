@@ -1,0 +1,163 @@
+var globalData;
+var eventOfInterest;
+
+$(function(){
+  if($("#lastFM").length != 0){
+    var arg = $.getUrlVar("lastFM_search_form");
+    if(arg){
+      showConcerts(arg.replace(/\+/g,' '));
+    }
+  }
+});
+
+
+function showConcerts(band){
+  var getEventsURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getevents&format=json&api_key=f5d61ca601bcc9956237b6377f70abf6"
+    
+    //Begin JSON call. 1st parameter is base url
+    $.getJSON(getEventsURL,
+      //second parameter is list of arguments
+      {
+        artist: band,
+        autocorrect: 1,
+        festivalsonly: 0,
+        dataType: "jsonp"
+      }, 
+      //third parameter is the callback function that gets passed the json
+      function (data){
+        globalData = data;
+        var list = $("#lastFM_left_div");
+        
+        //Emptying list
+        if(list.children().length != 0){
+          list.empty();
+        }
+
+        var items = [];
+
+        //Last.FM will pass back an array if there are multiple events. If there is only one event, it only
+        //passes back a single object, which is frustrating because we cant just call .length on the event 
+        //array because it might not be an array if there is only one event.Therefore, we must check the edge
+        //case that there is only one event. 
+        //First check if there are absolutely no events
+        if(data.events.event == null){
+          items.push("<strong> Sorry, no events to show for " + band + "</strong>");
+        }
+        else {
+          //now, check if "events" is an array. If it is it means we have more than one 
+          //event object stored in the array.
+          if($.isArray(data.events.event)){
+            for(var i = 0; i < data.events.event.length; i++){
+              //Grab picture and title of the event and push it into an array
+              items.push(
+                  '<div class="sub_panel">' +
+                    '<div class="lastFM_panel_front">' +
+                      '<img src='  + data.events.event[i].image[2]["#text"] + ' alt="eventPic"/>' + 
+                      '<h2>' + data.events.event[i].title + '</h2>' +  
+                    '</div>' +
+
+                    '<span class="lastFM_info_span">' +
+                      '<img src='  + data.events.event[i].image[3]["#text"] + ' alt="eventPic"/>' +
+                      '<h3>' + data.events.event[i]["title"] + '</h3>' +
+                      '<p> Location: ' + data.events.event[i].venue["name"] + " @ " + data.events.event[i].venue.location["city"] + ", " + data.events.event[i].venue.location["country"] + '</p>' +
+                      '<p>' + "First day: " + data.events.event[i]["startDate"]  + '</p>' +
+                    '</span>' +
+                  '</div>'
+              );
+            }
+          }
+          //else, we only have one event, and its an event object.
+          else{
+            //Grab picture and title of the event and push it into an array
+            items.push('<li class="clickable">' + '<img src='  + data.events.event.image[3]["#text"] + ' alt="eventPic"/>'
+            + data.events.event.title + '</li>');
+          }
+          //list.append(items.join(' '));
+      }
+
+      //Add all elements in list to the Events list
+      list.append(items.join(' '));
+      
+      //Set all <li> to be clickable and specify a click handler for all events
+      //$('li.clickable').css('cursor', 'pointer').click(eventClick);
+      $(".lastFM_info_span").css('cursor', 'pointer').click(eventClick);
+      $(".lastFM_panel_front").hover(infobox);
+      });
+}
+
+function eventClick(){
+  //We do the same as above, check if there is only one event object, or an array of event objects.
+  if($.isArray(globalData.events.event)){
+
+    /* A Fix. This will display the right times for concerts with the same name. Can work for one event too*/
+    temp = globalData.events.event[$(this).index()];
+    //$(this).append('<ul> <li>  Starts: '  + temp.startDate +  '<br/>  Ends: ' + temp.endDate +  '</li> </ul>');
+    eventOfInterest = temp;
+    dynamicLoad();
+  }
+  else{
+    if(globalData.events.event.title === $(this).text()){
+      //$(this).append('<ul> <li>  Starts: '  + globalData.events.event.startDate +  '<br/>  Ends: ' + 
+        //globalData.events.event.endDate + '</li> </ul>');
+      eventOfInterest = globalData.events.event; 
+      dynamicLoad(); 
+    }
+  }
+}
+
+function dynamicLoad(){
+
+  if($("#lastFM_googleMaps_script").length == 0){
+    console.log("about to insert");
+    $('<script>', {
+      src: 'http://maps.google.com/maps/api/js?' +
+        'key=AIzaSyClnt9-I5FJqcRJK35GxFMsY-vRTc7N8N8' + '&sensor=false&callback=showConcertMap',
+      id: 'lastFM_googleMaps_script'
+    }).appendTo('<body>');
+  }
+}
+
+function showConcertMap(){
+
+  var googleLatAndLong = new google.maps.LatLng(eventOfInterest.venue.location["geo:point"]["geo:lat"],eventOfInterest.venue.location["geo:point"]["geo:long"]);
+
+  var mapOptions = {
+    zoom: 15,
+    center: googleLatAndLong,
+    mapTypeId: google.maps.MapTypeId.ROADMAP//This is a type of map. Also try Hybrid and Satellite
+  };
+
+  map = new google.maps.Map($("#lastFM_map_div")[0], mapOptions);
+
+  addMarker(map, googleLatAndLong, "Concert Location", 
+    eventOfInterest.venue.location["city"] + ',' + eventOfInterest.venue.location["country"]);
+}
+
+function infobox(){
+  $(".sub_panel").hover(function() {
+        $(this).find('div.lastFM_panel_front').hide();
+        $(this).find('span').show();
+        } , function() {
+        $(this).find('span').hide('fast');
+        $(this).find('div.lastFM_panel_front').show('fast');
+      }); 
+}
+
+
+/* Code to grab url parameters in jQuery */
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
+  }
+});

@@ -26,7 +26,7 @@ $(function() {
   <% else %>
 	  var items = [];
 	  items.push("<li> " + "<%= @info.name %> </li>");
-	  items.push("<li> " + "<%= @info.summary %> </li>");
+	  items.push("<li> " + "<%= ActiveSupport::JSON.decode(@info.summary) %> </li>");
 	  items.push("<li> " + "<img src = " + "<%= @info.image(which = :extralarge) %> alt = 'Artist picture'/>" + "</li>");
 	  list.append(items.join(' '));
 	  //-> Calls a helper to inject the save button
