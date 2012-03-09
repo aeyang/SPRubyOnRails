@@ -6,7 +6,7 @@
 
 $(function() {
   //-> Displays Band information on the screen
-  var list = $("#search_info_ul");
+  var list = $("#search_info_div");
   //Emptying list
   if(list.children().length != 0){
 	   list.empty();
@@ -22,12 +22,12 @@ $(function() {
     $("#new_band").remove();
   }
   <% if @info.mbid.empty? %>
-      list.append('<li><b>Sorry, Name Not Recognized!</b></li>');
+      list.append('<b>Sorry, Name Not Recognized!</b>');
   <% else %>
 	  var items = [];
-	  items.push("<li> " + "<%= @info.name %> </li>");
-	  items.push("<li> " + "<%= ActiveSupport::JSON.decode(@info.summary) %> </li>");
-	  items.push("<li> " + "<img src = " + "<%= @info.image(which = :extralarge) %> alt = 'Artist picture'/>" + "</li>");
+	  items.push("<h3 id=" + "search_name_h3" + "> " + "<%= @info.name %> </h3>");
+    items.push("<img src = " + "<%= @info.image(which = :extralarge) %> alt = 'Artist picture'/>");
+	  items.push("<p id=" + "search_summary_p" + "> " + "<%= strip_tags @info.summary %> </p>");
 	  list.append(items.join(' '));
 	  //-> Calls a helper to inject the save button
       $("#search_save_div").html("<%= escape_javascript render :partial => 'layouts/saveartist', :locals => {:name => @info.name} %>");

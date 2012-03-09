@@ -192,6 +192,15 @@ strong{
   top: 200px;
 }
 
+#amazon_content_div div span{
+  display:none;
+  position: absolute;
+}
+
+#amazon_content_div div img{
+  margin:20px;
+}
+
 #amazon_widget_div {
   border: 2px solid;
   width: 500px; 
@@ -209,8 +218,19 @@ strong{
 
 #search_info_div {
   border-radius: 25px;
-  box-shadow: 10px 10px 5px #888888;
   margin: 20px;
+}
+
+#search_info_div img {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#search_info_div p, h3{
+  margin-right:auto;
+  margin-left:auto;
+  max-width: 1300px;
 }
 
 #search_save_div {
